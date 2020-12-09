@@ -5,7 +5,7 @@ const handelErrors = (err) => {
   // Error object
   let errors = { name: "", email: "", password: "" };
 
-  // Duplicate error
+  // Duplicate error code
   if (err.code === 11000) {
     errors.email = "Email is already registered";
     return errors;
