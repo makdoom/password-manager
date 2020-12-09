@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import cors from "cors";
 
+import router from "./routes/authRoutes.js";
+
 // Initialization
 const app = express();
 dotenv.config();
@@ -25,6 +27,9 @@ mongoose.connect(
   },
   () => console.log("DB connected")
 );
+
+// Routes
+app.use("/", router);
 
 // PORT
 const port = process.env.PORT || 5000;
