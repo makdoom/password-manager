@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import cors from "cors";
 
-import router from "./routes/authRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
 
 // Initialization
 const app = express();
@@ -29,7 +29,8 @@ mongoose.connect(
 );
 
 // Routes
-app.use("/", router);
+app.get("/", (req, res) => res.send("Welcome to PWD"));
+app.use(authRoutes);
 
 // PORT
 const port = process.env.PORT || 5000;

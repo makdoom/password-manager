@@ -1,5 +1,3 @@
-import { response } from "express";
-
 // User signup
 export const signup = (req, res) => {
   res.send("Signup User");
