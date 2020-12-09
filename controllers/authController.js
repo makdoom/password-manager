@@ -3,15 +3,21 @@ import User from "../models/UserModel.js";
 // Handel errors
 const handelErrors = (err) => {
   // Error object
-  let error = { name: "", email: "", password: "" };
+  let errors = { name: "", email: "", password: "" };
+
+  // Duplicate error
+  if (err.code === 11000) {
+    errors.email = "Email is already registered";
+    return errors;
+  }
 
   // validation error
   if (err.message.includes("user validation failed")) {
     Object.values(err.errors).forEach(({ properties }) => {
-      error[properties.path] = properties.message;
+      errors[properties.path] = properties.message;
     });
   }
-  return error;
+  return errors;
 };
 
 // User signup
