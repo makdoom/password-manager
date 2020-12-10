@@ -17,10 +17,14 @@
 
 .login__box h2 {
   text-align: center;
-  font-size: 2.2rem;
+  font-size: 2rem;
   margin-bottom: 1.2rem;
   font-weight: 700;
   color: #22ac06;
+}
+
+.login__box h2 span {
+  font-size: 2rem;
 }
 
 .login__box form {
@@ -29,11 +33,24 @@
   flex-direction: column;
 }
 
+.form__control .email,
+.password {
+  /* border: 1px solid #000; */
+  /* padding-bottom: 0.5rem; */
+}
+
+.form__control .error {
+  color: red;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  margin-left: 2px;
+}
+
 .login__box form input {
   padding: 8px 15px;
+  width: 100%;
   font-size: 0.9rem;
   font-family: "Inter";
-  margin-bottom: 1rem;
   outline: none;
   border: 1px solid lightgray;
   border-bottom: 2px solid lightgray;
@@ -53,6 +70,7 @@
   color: #fff;
   font-weight: 600;
   padding: 10px 15px;
+  letter-spacing: 1px;
   cursor: pointer;
 }
 

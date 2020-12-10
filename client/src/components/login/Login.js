@@ -6,10 +6,18 @@ const Login = () => {
   return (
     <div className="login">
       <div className="login__box">
-        <h2>Login</h2>
+        <h2>
+          Login <span className="material-icons">person_add</span>
+        </h2>
         <form className="form__control">
-          <input type="text" placeholder="Email" />
-          <input type="password" placeholder="Password" />
+          <div className="email">
+            <input type="text" placeholder="Email" />
+            <p className="error"></p>
+          </div>
+          <div className="password">
+            <input type="password" placeholder="password" />
+            <p className="error"></p>
+          </div>
           <button type="submit">Login</button>
         </form>
         <p>
