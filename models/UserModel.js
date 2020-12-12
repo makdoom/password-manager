@@ -22,6 +22,19 @@ const userSchema = new mongoose.Schema({
   },
 });
 
+// static method
+userSchema.statics.login = async function (email, password) {
+  const user = await this.findOne({ email });
+  // User is there or not
+  if (user) {
+    const result = await bcrypt.compare(password, user.password);
+    if (result) return user;
+
+    throw Error("Incorrect password");
+  }
+  throw Error("Email is not registered");
+};
+
 // Encrypting the password
 userSchema.pre("save", async function (next) {
   const salt = await bcrypt.genSalt();

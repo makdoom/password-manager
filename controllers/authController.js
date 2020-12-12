@@ -46,15 +46,29 @@ export const signup = async (req, res) => {
     });
     res.status(201).json({ name: newUser.name });
   } catch (error) {
-    // console.log(error.message);
     const errors = handelErrors(error);
-    console.log(errors);
     res.status(401).json({ errors });
   }
-  // res.status(200).json({ name, email, password });
 };
 
 // User Login
-export const login = (req, res) => {
-  res.send("Login User");
+export const login = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.login(email, password);
+    // Assigning token
+    const token = createToken(user._id);
+    // TODO: to secure cookie
+    res.cookie("jwt", token, {
+      httpOnly: true,
+      // secure: true,
+      maxAge: maxAge * 1000,
+    });
+    res.status(200).json({ name: user.name });
+  } catch (error) {
+    // const errors = handelErrors(error);
+    console.log(error);
+    res.status(401).json({});
+  }
 };
