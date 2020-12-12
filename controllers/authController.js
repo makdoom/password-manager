@@ -7,6 +7,16 @@ const handelErrors = (err) => {
   // Error object
   let errors = { name: "", email: "", password: "" };
 
+  // Email error
+  if (err.message === "Email is not registered") {
+    errors.email = "Email is not registered";
+  }
+
+  // Password error
+  if (err.message === "Incorrect password") {
+    errors.password = "Password do not match";
+  }
+
   // Duplicate error code
   if (err.code === 11000) {
     errors.email = "Email is already registered";
@@ -67,8 +77,7 @@ export const login = async (req, res) => {
     });
     res.status(200).json({ name: user.name });
   } catch (error) {
-    // const errors = handelErrors(error);
-    console.log(error);
-    res.status(401).json({});
+    const errors = handelErrors(error);
+    res.status(401).json({ errors });
   }
 };
