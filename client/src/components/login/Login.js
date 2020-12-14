@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import "./login.css";
 
+import { UserContext } from "../../context/UserContext";
+
 const Login = () => {
   const history = useHistory();
+  const { login } = useContext(UserContext);
+  // console.log("Context", user);
 
   // Local user obj
   const [user, setUser] = useState({
@@ -28,8 +32,9 @@ const Login = () => {
 
     try {
       const response = await axios.post("/login", user);
-      history.push("/dash");
+      login();
       console.log(response);
+      history.push("/dash");
     } catch (error) {
       const err = error.response.data;
       setError(err.errors);

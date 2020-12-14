@@ -1,4 +1,6 @@
 import React, { createContext, useReducer } from "react";
+
+import { SIGNUP_SUCCESS, LOGIN_SUCCESS } from "../reducers/types";
 import appReducer from "../reducers/appReducer";
 
 // InitialStata
@@ -15,8 +17,19 @@ const UserProvider = ({ children }) => {
   // Reducer
   const [state, dispatch] = useReducer(appReducer, initialState);
 
+  const login = () => {
+    dispatch({
+      type: LOGIN_SUCCESS,
+    });
+  };
+  const signup = () => {
+    dispatch({
+      type: SIGNUP_SUCCESS,
+    });
+  };
+
   return (
-    <UserContext.Provider value={{ user: state }}>
+    <UserContext.Provider value={{ globalUser: state, login, signup }}>
       {children}
     </UserContext.Provider>
   );
