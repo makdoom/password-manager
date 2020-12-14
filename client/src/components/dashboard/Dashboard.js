@@ -1,24 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 
+import { UserContext } from "../../context/UserContext";
+
 const Dashboard = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState();
-  useEffect(() => {
-    const isAuth = async () => {
-      try {
-        await axios.get("/dash");
-        setIsAuthenticated(true);
-      } catch (error) {
-        setIsAuthenticated(false);
-      }
-    };
-    isAuth();
-    return () => {
-      setIsAuthenticated(); // This worked for me
-    };
-  }, []);
-  if (!isAuthenticated) return <Redirect to="/" />;
+  const { user } = useContext(UserContext);
+  console.log("Context", user);
+
+  if (!user.isAuthenticated) return <Redirect to="/" />;
   return (
     <div className="dashboard">
       <h1>Dashboard</h1>
