@@ -33,12 +33,6 @@
   flex-direction: column;
 }
 
-.form__control .email,
-.password {
-  /* border: 1px solid #000; */
-  /* padding-bottom: 0.5rem; */
-}
-
 .form__control .error {
   text-align: left;
   color: red;

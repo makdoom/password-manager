@@ -1,0 +1,108 @@
+.dashboard {
+  height: 100vh;
+  background: #e6ffe0;
+  padding: 20px;
+}
+
+.dashboard .heading {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.dashboard .heading span {
+  color: #22ac06;
+}
+
+.dashboard__container {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  height: 85vh;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 1rem;
+}
+
+.dashboard__profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard__profile .profile {
+  display: flex;
+  align-items: center;
+}
+
+.profile__avatar .avatar {
+  background: #e6ffe0;
+  width: 100px;
+  height: 100px;
+  font-size: 3rem;
+  color: #22ac06;
+  border: 1px solid #22ac06;
+}
+
+.profile__info {
+  margin-left: 1rem;
+}
+
+.profile__info h3 {
+  font-size: 1.2rem;
+}
+
+.profile__info p {
+  font-size: 0.9rem;
+  color: grey;
+}
+
+.profile__info button {
+  margin-top: 1rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 8px 30px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 2px solid #27ca06;
+  background: #fff;
+  color: #27ca06;
+  transition: all 0.3s ease-in-out;
+}
+
+.profile__info button:hover {
+  background: #27ca06;
+  color: #fff;
+}
+
+.logout button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 8px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  background: #27ca06;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+
+.logout button:hover {
+  background: #1d9705;
+}
+.logout button i {
+  font-size: 1rem;
+  margin-left: 0.3rem;
+}
+
+.dashboard__body {
+  /* border: 1px solid #000; */
+  margin-top: 2rem;
+  height: calc(80vh - 150px);
+  overflow: auto;
+}
+
+.password__feild {
+  width: 250px;
+}

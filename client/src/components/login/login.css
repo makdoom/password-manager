@@ -6,7 +6,6 @@
   align-items: center;
   background: #e6ffe0;
 }
-
 .login__box {
   padding: 30px;
   background: #fff;
@@ -31,12 +30,6 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-}
-
-.form__control .email,
-.password {
-  /* border: 1px solid #000; */
-  /* padding-bottom: 0.5rem; */
 }
 
 .form__control .error {
