@@ -49,7 +49,9 @@
 }
 
 .profile__info h3 {
-  font-size: 1.2rem;
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: bold;
 }
 
 .profile__info p {
@@ -103,6 +105,20 @@
   overflow: auto;
 }
 
-.password__feild {
-  width: 250px;
+.dashboardTable__header {
+  /* border: 1px solid #000; */
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px 0;
+  background: #e6ffe0;
+  border-bottom: 2px solid #22ac06;
+  margin-bottom: 0.8rem;
+}
+
+.dashboardTable__header div {
+  margin: 0 90px;
+}
+
+.dashboardTable__header div span {
+  font-weight: bold;
 }

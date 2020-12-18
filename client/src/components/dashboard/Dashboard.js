@@ -1,39 +1,15 @@
 import React, { useContext } from "react";
 import { Redirect } from "react-router-dom";
-import Avatar from "@material-ui/core/Avatar";
-import { makeStyles } from "@material-ui/core/styles";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-} from "@material-ui/core";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./dashboard.css";
+import Avatar from "@material-ui/core/Avatar";
 
 import { UserContext } from "../../context/UserContext";
+import Row from "../Row/Row";
 
-const useStyles = makeStyles({
-  table: {
-    minWidth: 700,
-  },
-  tableHead: {
-    background: "#e6ffe0",
-  },
-  headContent: {
-    fontWeight: "bold",
-  },
-  password: {
-    border: "none",
-    outline: "none",
-  },
-});
 const Dashboard = () => {
   const { globalUser } = useContext(UserContext);
   console.log("Context", globalUser);
-  const classes = useStyles();
 
   if (!globalUser.isAuthenticated) return <Redirect to="/" />;
   return (
@@ -55,49 +31,32 @@ const Dashboard = () => {
           </div>
           <div className="logout">
             <button>
-              Logout <i class="fas fa-sign-out-alt"></i>
+              Logout <i className="fas fa-sign-out-alt"></i>
             </button>
           </div>
         </div>
+        {/* TODO: working on dashboard body (table) */}
+
         <div className="dashboard__body">
-          <TableContainer className="table__container">
-            <Table className={classes.table}>
-              <TableHead>
-                <TableRow className={classes.tableHead}>
-                  <TableCell className={classes.headContent}>Title</TableCell>
-                  <TableCell className={classes.headContent}>
-                    Username
-                  </TableCell>
-                  <TableCell className={classes.headContent}>
-                    Password
-                  </TableCell>
-                  <TableCell className={classes.headContent}>Options</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                <TableRow>
-                  <TableCell>Amazon</TableCell>
-                  <TableCell>makdoom</TableCell>
-                  <TableCell>
-                    <input
-                      className={classes.password}
-                      type="password"
-                      value="makdoomshaikh"
-                    />
-                  </TableCell>
-                  <TableCell>Added</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Amazon</TableCell>
-                  <TableCell>makdoom</TableCell>
-                  <TableCell>
-                    <input className="pasword__field" type="password" />
-                  </TableCell>
-                  <TableCell>Added</TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </TableContainer>
+          <div className="dashboardTable__header">
+            <div className="title">
+              <span>Title</span>
+            </div>
+            <div className="username">
+              <span>Username</span>
+            </div>
+            <div className="password">
+              <span>Password</span>
+            </div>
+            <div className="options">
+              <span>Options</span>
+            </div>
+          </div>
+
+          {/* Row Array */}
+          <Row />
+          <Row />
+          <Row />
         </div>
       </div>
     </div>
