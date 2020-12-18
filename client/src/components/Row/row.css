@@ -8,9 +8,15 @@
 
 .dashboardTable__row div {
   margin: 0 50px;
-  border: 1px solid #000;
+  /* border: 1px solid #000; */
 }
 
 .dashboardTable__row .passwordField {
   width: 200px;
+  border: none;
+  outline: none;
+}
+
+.dashboardTable__row .eyeBtn {
+  cursor: pointer;
 }

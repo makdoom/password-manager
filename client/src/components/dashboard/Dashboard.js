@@ -26,7 +26,7 @@ const Dashboard = () => {
             <div className="profile__info">
               <h3>Makdoom Shaikh</h3>
               <p>makshaikh99@gmail.com</p>
-              <button>Add Password</button>
+              <button>Add Passwords</button>
             </div>
           </div>
           <div className="logout">
