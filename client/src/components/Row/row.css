@@ -20,3 +20,17 @@
 .dashboardTable__row .eyeBtn {
   cursor: pointer;
 }
+
+.dashboardTable__row .options i {
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.dashboardTable__row .options .edit {
+  color: #22ac06;
+  padding-right: 1rem;
+}
+
+.dashboardTable__row .options .delete {
+  color: red;
+}

@@ -1,18 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import "./row.css";
 
 const Row = () => {
-  const handlePassword = (e) => {
+  const [show, setShow] = useState(false);
+  // Password Toggle
+  const handlePasswordToggle = (e) => {
     const passwordField = e.target.previousSibling.previousSibling;
-    console.log(passwordField);
-    // passwordField.map((password) => {
     if (passwordField.type === "password") {
       passwordField.type = "text";
+      setShow(true);
     } else {
       passwordField.type = "password";
+      setShow(false);
     }
-    // });
   };
+
+  const handleChange = () => {};
   return (
     <div className="dashboardTable__row">
       <div>Amazon</div>
@@ -22,11 +25,18 @@ const Row = () => {
           type="password"
           className="passwordField"
           value="makdoomshaikh"
+          onChange={handleChange}
         />{" "}
-        <i className="far fa-eye eyeBtn" onClick={handlePassword}></i>
+        <i
+          className={`eyeBtn far fa-eye${show ? "-slash" : ""}`}
+          onClick={handlePasswordToggle}
+        ></i>
         {/* <i class="far fa-eye-slash"></i> */}
       </div>
-      <div>added</div>
+      <div className="options">
+        <i className="edit far fa-edit"></i>
+        <i className="delete far fa-trash-alt"></i>
+      </div>
     </div>
   );
 };
