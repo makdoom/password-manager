@@ -57,7 +57,7 @@ export const signup = async (req, res) => {
     });
 
     await Password.create({ userId: newUser._id });
-    res.status(201).json({ name: newUser.name });
+    res.status(201).json({ user: newUser });
   } catch (error) {
     const errors = handelErrors(error);
     res.status(401).json({ errors });
@@ -78,7 +78,7 @@ export const login = async (req, res) => {
       // secure: true,
       maxAge: maxAge * 1000,
     });
-    res.status(200).json({ name: user.name });
+    res.status(200).json({ user });
   } catch (error) {
     const errors = handelErrors(error);
     res.status(401).json({ errors });

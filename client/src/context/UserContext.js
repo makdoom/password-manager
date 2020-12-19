@@ -6,7 +6,10 @@ import appReducer from "../reducers/appReducer";
 // InitialStata
 const initialState = {
   isAuthenticated: false,
-  loginStatus: false,
+  user: {
+    name: "",
+    email: "",
+  },
 };
 
 // Create Context
@@ -17,9 +20,10 @@ const UserProvider = ({ children }) => {
   // Reducer
   const [state, dispatch] = useReducer(appReducer, initialState);
 
-  const login = () => {
+  const login = (newUser) => {
     dispatch({
       type: LOGIN_SUCCESS,
+      payload: newUser,
     });
   };
   const signup = () => {

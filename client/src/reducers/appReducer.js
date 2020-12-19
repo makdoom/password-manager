@@ -6,13 +6,16 @@ const appReducer = (state, action) => {
     case SIGNUP_SUCCESS:
       return {
         isAuthenticated: true,
-        loginStatus: true,
       };
 
     case LOGIN_SUCCESS:
+      const user = action.payload;
       return {
         isAuthenticated: true,
-        loginStatus: true,
+        user: {
+          name: user.name,
+          email: user.email,
+        },
       };
 
     default:

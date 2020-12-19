@@ -31,11 +31,13 @@ const Dashboard = () => {
         <div className="dashboard__profile">
           <div className="profile">
             <div className="profile__avatar">
-              <Avatar className="avatar">M</Avatar>
+              <Avatar className="avatar">
+                {globalUser.user.name.charAt(0)}
+              </Avatar>
             </div>
             <div className="profile__info">
-              <h3>Makdoom Shaikh</h3>
-              <p>makshaikh99@gmail.com</p>
+              <h3>{globalUser.user.name}</h3>
+              <p>{globalUser.user.email}</p>
               <button onClick={toggleModal}>Add Passwords</button>
             </div>
           </div>
@@ -63,16 +65,6 @@ const Dashboard = () => {
           </div>
 
           {/* Row Array */}
-          <Row />
-          <Row />
-          <Row />
-          <Row />
-          <Row />
-          <Row />
-          <Row />
-          <Row />
-          <Row />
-          <Row />
           <Row />
           <Row />
         </div>
