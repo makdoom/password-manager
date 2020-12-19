@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-export const requireAuth = (req, res, next) => {
+export const passwordAuth = (req, res, next) => {
   // token
   const token = req.cookies.jwt;
   //   // token exists or not
@@ -11,7 +11,7 @@ export const requireAuth = (req, res, next) => {
         res.json({ auth: false });
       } else {
         req.token = decodedToken;
-        res.status(200).json({ auth: true, token: decodedToken });
+        // res.status(200).json({ auth: true, token: decodedToken });
         next();
       }
     });

@@ -6,6 +6,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 
 import authRoutes from "./routes/authRoutes.js";
+import passwordRoutes from "./routes/passwordRoutes.js";
 
 // Initialization
 const app = express();
@@ -32,6 +33,7 @@ mongoose.connect(
 
 // Routes
 app.get("/", (req, res) => res.send("Welcome to PWD"));
+app.use(passwordRoutes);
 app.use(authRoutes);
 
 // PORT

@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 
 import User from "../models/UserModel.js";
+import Password from "../models/PasswordModel.js";
 
 // Handel errors
 const handelErrors = (err) => {
@@ -54,6 +55,8 @@ export const signup = async (req, res) => {
       // secure: true,
       maxAge: maxAge * 1000,
     });
+
+    await Password.create({ userId: newUser._id });
     res.status(201).json({ name: newUser.name });
   } catch (error) {
     const errors = handelErrors(error);
