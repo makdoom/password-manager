@@ -1,4 +1,4 @@
-/* .modal__container {
+.modal__container {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -8,12 +8,13 @@
   z-index: 2;
   width: 450px;
   min-width: 300px;
+  /* padding: 10px 0; */
 }
 
 .modal__header {
   display: flex;
   justify-content: space-between;
-  padding: 15px;
+  padding: 20px;
 }
 
 .modal__header h3 {
@@ -23,6 +24,7 @@
 
 .modal__header i {
   font-size: 1.3rem;
+  cursor: pointer;
 }
 
 .form__control {
@@ -57,4 +59,4 @@
   color: #fff;
   font-size: 0.95rem;
   font-weight: 600;
-} */
+}

@@ -22,7 +22,7 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
       <div className={`modal__background modalShowing-${modal}`}>
-        <Modal />
+        <Modal modal={modal} setModal={setModal} />
       </div>
       <h2 className="heading">
         Password <span>Manager</span>
@@ -54,7 +54,7 @@ const Dashboard = () => {
             <div className="username">
               <span>Username</span>
             </div>
-            <div className="password">
+            <div className="passwordBx">
               <span>Password</span>
             </div>
             <div className="options">
@@ -63,6 +63,15 @@ const Dashboard = () => {
           </div>
 
           {/* Row Array */}
+          <Row />
+          <Row />
+          <Row />
+          <Row />
+          <Row />
+          <Row />
+          <Row />
+          <Row />
+          <Row />
           <Row />
           <Row />
           <Row />
