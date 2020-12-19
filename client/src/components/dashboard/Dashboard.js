@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Redirect } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./dashboard.css";
@@ -6,14 +6,24 @@ import Avatar from "@material-ui/core/Avatar";
 
 import { UserContext } from "../../context/UserContext";
 import Row from "../Row/Row";
+import Modal from "../Modal/Modal";
 
 const Dashboard = () => {
+  const [modal, setModal] = useState(false);
   const { globalUser } = useContext(UserContext);
   console.log("Context", globalUser);
+
+  // Handle modal state
+  const toggleModal = () => {
+    setModal(!modal);
+  };
 
   if (!globalUser.isAuthenticated) return <Redirect to="/" />;
   return (
     <div className="dashboard">
+      <div className={`modal__background modalShowing-${modal}`}>
+        <Modal />
+      </div>
       <h2 className="heading">
         Password <span>Manager</span>
       </h2>
@@ -26,7 +36,7 @@ const Dashboard = () => {
             <div className="profile__info">
               <h3>Makdoom Shaikh</h3>
               <p>makshaikh99@gmail.com</p>
-              <button>Add Passwords</button>
+              <button onClick={toggleModal}>Add Passwords</button>
             </div>
           </div>
           <div className="logout">
@@ -35,7 +45,6 @@ const Dashboard = () => {
             </button>
           </div>
         </div>
-        {/* TODO: working on dashboard body (table) */}
 
         <div className="dashboard__body">
           <div className="dashboardTable__header">

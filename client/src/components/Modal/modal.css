@@ -1,0 +1,60 @@
+/* .modal__container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  background: #fff;
+  z-index: 2;
+  width: 450px;
+  min-width: 300px;
+}
+
+.modal__header {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+.modal__header h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.modal__header i {
+  font-size: 1.3rem;
+}
+
+.form__control {
+  padding: 10px 15px 15px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.form__control .modal__input,
+.add__password {
+  width: 250px;
+  margin-bottom: 0.6rem;
+}
+
+.form__control .modal__input {
+  padding: 7px 10px;
+  border: 1px solid lightgray;
+  outline: none;
+  border-bottom: 2px solid lightgray;
+  font-size: 0.9rem;
+}
+
+.add__password {
+  border: none;
+  outline: none;
+  margin-top: 1rem;
+  padding: 8px;
+  background: #27ca06;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+} */

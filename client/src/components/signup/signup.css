@@ -27,13 +27,13 @@
   font-size: 2rem;
 }
 
-.signup__box form {
+.signup__box .signup__form {
   display: flex;
   justify-content: center;
   flex-direction: column;
 }
 
-.form__control .error {
+.signup__form .error {
   text-align: left;
   color: red;
   font-size: 0.9rem;
@@ -41,7 +41,9 @@
   margin-left: 2px;
 }
 
-.signup__box form input {
+.signup__form .name,
+.email,
+.password {
   padding: 8px 15px;
   width: 100%;
   font-size: 0.9rem;
@@ -51,13 +53,15 @@
   border-bottom: 2px solid lightgray;
   transition: all 0.3s ease-in-out;
 }
-
-.signup__box form input:focus {
+.signup__form .name:focus,
+.email:focus,
+.password:focus {
   border-color: #25e000;
 }
 
-.signup__box form button {
+.signup__form .signup__btn {
   margin: 1rem 0;
+  width: 100%;
   font-size: 1rem;
   border: none;
   outline: none;

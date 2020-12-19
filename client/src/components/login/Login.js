@@ -48,9 +48,10 @@ const Login = () => {
         <h2>
           Login <span className="material-icons">person_add</span>
         </h2>
-        <form className="form__control" onSubmit={handleSubmit}>
-          <div className="email">
+        <form className="login__form" onSubmit={handleSubmit}>
+          <div className="emailBox">
             <input
+              className="email"
               type="text"
               placeholder="Email"
               name="email"
@@ -58,16 +59,19 @@ const Login = () => {
             />
             <p className="error">{error && error.email}</p>
           </div>
-          <div className="password">
+          <div className="passwordBox">
             <input
               type="password"
+              className="password"
               placeholder="password"
               name="password"
               onChange={handleChange}
             />
             <p className="error">{error && error.password}</p>
           </div>
-          <button type="submit">Login</button>
+          <button className="login__btn" type="submit">
+            Login
+          </button>
         </form>
         <p>
           Don't have an account ?{" "}

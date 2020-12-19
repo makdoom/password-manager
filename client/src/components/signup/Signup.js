@@ -46,10 +46,11 @@ const Signup = () => {
     <div className="login">
       <div className="login__box">
         <h2>Signup</h2>
-        <form className="form__control" onSubmit={handleSubmit}>
-          <div className="name">
+        <form className="signup__form" onSubmit={handleSubmit}>
+          <div className="nameBox">
             <input
               name="name"
+              className="name"
               type="text"
               placeholder="Name"
               required
@@ -57,9 +58,10 @@ const Signup = () => {
             />
             <p className="error">{error && error.name}</p>
           </div>
-          <div className="email">
+          <div className="emailBox">
             <input
               name="email"
+              className="email"
               type="text"
               placeholder="Email"
               required
@@ -67,8 +69,9 @@ const Signup = () => {
             />
             <p className="error">{error && error.email}</p>
           </div>
-          <div className="password">
+          <div className="passwordBox">
             <input
+              className="password"
               name="password"
               type="password"
               placeholder="password"
@@ -77,7 +80,9 @@ const Signup = () => {
             />
             <p className="error">{error && error.password}</p>
           </div>
-          <button type="submit">Signup</button>
+          <button className="signup__btn" type="submit">
+            Signup
+          </button>
         </form>
         <p className="sign">
           Have an account ?{" "}
