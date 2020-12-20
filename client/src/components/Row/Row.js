@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./row.css";
 
-const Row = ({ password }) => {
+const Row = ({ password, edit }) => {
   const [show, setShow] = useState(false);
   // Password Toggle
   const handlePasswordToggle = (e) => {
@@ -33,7 +33,7 @@ const Row = ({ password }) => {
         ></i>
       </div>
       <div className="options">
-        <i className="edit far fa-edit"></i>
+        <i className="edit far fa-edit" onClick={() => edit(password)}></i>
         <i className="delete far fa-trash-alt"></i>
       </div>
     </div>

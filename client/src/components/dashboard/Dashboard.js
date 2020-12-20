@@ -12,14 +12,20 @@ import Modal from "../Modal/Modal";
 const Dashboard = () => {
   const [modal, setModal] = useState(false);
   const { globalUser } = useContext(UserContext);
+  const [currentUser, setcurrentUser] = useState(null);
   const [passwordList, setPasswordList] = useState({
     passwords: [],
   });
 
+  const handleEdit = (updateUser) => {
+    setcurrentUser(updateUser);
+    setModal(!modal);
+  };
   // Handle modal state
   const toggleModal = () => {
     setModal(!modal);
   };
+  console.log(currentUser);
 
   useEffect(() => {
     const getPasswordsList = async () => {
@@ -39,7 +45,7 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
       <div className={`modal__background modalShowing-${modal}`}>
-        <Modal modal={modal} setModal={setModal} />
+        <Modal modal={modal} setModal={setModal} update={currentUser} />
       </div>
       <h2 className="heading">
         Password <span>Manager</span>
@@ -59,7 +65,7 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="logout">
-            <button>
+            <button onClick={handleEdit}>
               Logout <i className="fas fa-sign-out-alt"></i>
             </button>
           </div>
@@ -83,7 +89,7 @@ const Dashboard = () => {
 
           {passwordList.passwords.length > 0 ? (
             passwordList.passwords.map((password) => (
-              <Row password={password} />
+              <Row password={password} key={password._id} edit={handleEdit} />
             ))
           ) : (
             <div className="welcome">

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./modal.css";
 import axios from "axios";
 
-const Modal = ({ modal, setModal }) => {
+const Modal = ({ modal, setModal, update }) => {
   const [newPassword, setNewPassword] = useState({
     title: "",
     username: "",
@@ -16,15 +16,18 @@ const Modal = ({ modal, setModal }) => {
   // Handle submit
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    try {
-      const response = await axios.post("/add", newPassword);
-      setModal(!modal);
-      setNewPassword({ title: "", username: "", password: "" });
-      console.log(response);
-    } catch (error) {
-      const err = error.response.data;
-      console.log(err);
+    if (update) {
+      // TODO: update request
+    } else {
+      try {
+        const response = await axios.post("/add", newPassword);
+        setModal(!modal);
+        setNewPassword({ title: "", username: "", password: "" });
+        console.log(response);
+      } catch (error) {
+        const err = error.response.data;
+        console.log(err);
+      }
     }
   };
 
@@ -33,10 +36,11 @@ const Modal = ({ modal, setModal }) => {
     setNewPassword({ title: "", username: "", password: "" });
   };
 
+  console.log("From modal", update);
   return (
     <div className="modal__container">
       <div className="modal__header">
-        <h3>Add More Passwords</h3>
+        <h3>{update ? "Update Details" : "Add More Passwords"}</h3>
         <i className="fas fa-times" onClick={closeModal}></i>
       </div>
       <div className="modal__body">
@@ -46,14 +50,14 @@ const Modal = ({ modal, setModal }) => {
             className="modal__input"
             type="text"
             placeholder="Title"
-            value={newPassword.title}
+            value={update ? update.title : newPassword.title}
             onChange={handleChange}
           />
           <input
             name="username"
             className="modal__input"
             type="text"
-            value={newPassword.username}
+            value={update ? update.username : newPassword.username}
             placeholder="Username"
             onChange={handleChange}
           />
@@ -61,7 +65,7 @@ const Modal = ({ modal, setModal }) => {
             name="password"
             className="modal__input"
             type="password"
-            value={newPassword.password}
+            value={update ? update.password : newPassword.password}
             placeholder="Password"
             onChange={handleChange}
           />
