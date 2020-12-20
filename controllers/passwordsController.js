@@ -36,10 +36,25 @@ export const fetchPasswords = async (req, res) => {
 
   try {
     const response = await Password.findOne({ userId });
-    console.log(response);
     res.status(200).json({ user: response });
   } catch (error) {
     // res.status(401).json({ error });
     console.log(error);
   }
+};
+
+// update passwords
+export const updatePassword = async (req, res) => {
+  // take id from req obj
+  const userId = req.token.id;
+
+  console.log(req.body);
+  // try {
+  //   const response = await Password.findOne({ userId });
+  //   console.log(response);
+  //   res.status(200).json({ user: response });
+  // } catch (error) {
+  //   // res.status(401).json({ error });
+  //   console.log(error);
+  // }
 };

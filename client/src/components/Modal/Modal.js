@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./modal.css";
 import axios from "axios";
 
@@ -7,33 +7,42 @@ import { UserContext } from "../../context/UserContext";
 const Modal = ({ modal, setModal, update }) => {
   const { globalUser } = useContext(UserContext);
   const [newPassword, setNewPassword] = useState({
-    title: update ? update.title : "",
-    username: update ? update.username : "",
-    password: update ? update.password : "",
+    title: "",
+    username: "",
+    password: "",
   });
 
   const handleChange = (e) => {
     setNewPassword({ ...newPassword, [e.target.name]: e.target.value });
   };
 
+  useEffect(() => {
+    if (update) {
+      setNewPassword({
+        title: update.title,
+        username: update.username,
+        password: update.password,
+      });
+    }
+  }, [update]);
   // Handle submit
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (update) {
-      //! update request
-
-      console.log(newPassword);
-      // try {
-      //   const response = await axios.post("/update", );
-      // } catch (error) {
-      //   const err = error.response.data;
-      //   console.log(err);
-      // }
-    } else {
+    if (!update) {
       try {
         const response = await axios.post("/add", newPassword);
         setModal(!modal);
         setNewPassword({ title: "", username: "", password: "" });
+        console.log(response);
+      } catch (error) {
+        const err = error.response.data;
+        console.log(err);
+      }
+    } else {
+      try {
+        const response = await axios.post("/update", newPassword);
+        // setModal(!modal);
+        // setNewPassword({ title: "", username: "", password: "" });
         console.log(response);
       } catch (error) {
         const err = error.response.data;
@@ -47,7 +56,7 @@ const Modal = ({ modal, setModal, update }) => {
     setNewPassword({ title: "", username: "", password: "" });
   };
 
-  console.log("From modal", update);
+  console.log(newPassword, update);
   return (
     <div className="modal__container">
       <div className="modal__header">
