@@ -8,6 +8,7 @@ const appReducer = (state, action) => {
       return {
         isAuthenticated: true,
         user: {
+          id: newUser._id,
           name: newUser.name,
           email: newUser.email,
         },
@@ -18,6 +19,7 @@ const appReducer = (state, action) => {
       return {
         isAuthenticated: true,
         user: {
+          id: user._id,
           name: user.name,
           email: user.email,
         },

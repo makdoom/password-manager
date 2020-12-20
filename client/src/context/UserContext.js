@@ -7,6 +7,7 @@ import appReducer from "../reducers/appReducer";
 const initialState = {
   isAuthenticated: false,
   user: {
+    id: "",
     name: "",
     email: "",
   },

@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./modal.css";
 import axios from "axios";
 
+import { UserContext } from "../../context/UserContext";
+
 const Modal = ({ modal, setModal, update }) => {
+  const { globalUser } = useContext(UserContext);
   const [newPassword, setNewPassword] = useState({
-    title: "",
-    username: "",
-    password: "",
+    title: update ? update.title : "",
+    username: update ? update.username : "",
+    password: update ? update.password : "",
   });
 
   const handleChange = (e) => {
@@ -17,7 +20,15 @@ const Modal = ({ modal, setModal, update }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (update) {
-      // TODO: update request
+      //! update request
+
+      console.log(newPassword);
+      // try {
+      //   const response = await axios.post("/update", );
+      // } catch (error) {
+      //   const err = error.response.data;
+      //   console.log(err);
+      // }
     } else {
       try {
         const response = await axios.post("/add", newPassword);
@@ -50,14 +61,14 @@ const Modal = ({ modal, setModal, update }) => {
             className="modal__input"
             type="text"
             placeholder="Title"
-            value={update ? update.title : newPassword.title}
+            value={newPassword.title}
             onChange={handleChange}
           />
           <input
             name="username"
             className="modal__input"
             type="text"
-            value={update ? update.username : newPassword.username}
+            value={newPassword.username}
             placeholder="Username"
             onChange={handleChange}
           />
@@ -65,7 +76,7 @@ const Modal = ({ modal, setModal, update }) => {
             name="password"
             className="modal__input"
             type="password"
-            value={update ? update.password : newPassword.password}
+            value={newPassword.password}
             placeholder="Password"
             onChange={handleChange}
           />

@@ -12,11 +12,13 @@ import Modal from "../Modal/Modal";
 const Dashboard = () => {
   const [modal, setModal] = useState(false);
   const { globalUser } = useContext(UserContext);
+  // console.log(globalUser);
   const [currentUser, setcurrentUser] = useState(null);
   const [passwordList, setPasswordList] = useState({
     passwords: [],
   });
 
+  // Handle update
   const handleEdit = (updateUser) => {
     setcurrentUser(updateUser);
     setModal(!modal);
@@ -25,7 +27,7 @@ const Dashboard = () => {
   const toggleModal = () => {
     setModal(!modal);
   };
-  console.log(currentUser);
+  // console.log(currentUser);
 
   useEffect(() => {
     const getPasswordsList = async () => {
@@ -40,7 +42,6 @@ const Dashboard = () => {
     getPasswordsList();
   }, []);
 
-  console.log("List", passwordList);
   if (!globalUser.isAuthenticated) return <Redirect to="/" />;
   return (
     <div className="dashboard">
