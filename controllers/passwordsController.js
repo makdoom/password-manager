@@ -47,14 +47,24 @@ export const fetchPasswords = async (req, res) => {
 export const updatePassword = async (req, res) => {
   // take id from req obj
   const userId = req.token.id;
+  const { id, title, username, password } = req.body;
+  console.log(id);
+  try {
+    const user = await Password.findOne({ userId });
+    if (user) {
+      user.passwords.map((currentUser) => {
+        if (currentUser._id == id) {
+          currentUser.title = title;
+          currentUser.username = username;
+          currentUser.password = password;
+        }
+      });
+    }
 
-  console.log(req.body);
-  // try {
-  //   const response = await Password.findOne({ userId });
-  //   console.log(response);
-  //   res.status(200).json({ user: response });
-  // } catch (error) {
-  //   // res.status(401).json({ error });
-  //   console.log(error);
-  // }
+    const savedUser = await user.save();
+    res.status(200).json({ updatedUser: savedUser });
+    // console.log(savedUser);
+  } catch (error) {
+    console.log(error);
+  }
 };

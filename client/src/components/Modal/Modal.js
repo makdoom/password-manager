@@ -40,9 +40,14 @@ const Modal = ({ modal, setModal, update }) => {
       }
     } else {
       try {
-        const response = await axios.post("/update", newPassword);
-        // setModal(!modal);
-        // setNewPassword({ title: "", username: "", password: "" });
+        const response = await axios.post("/update", {
+          id: update._id,
+          title: newPassword.title,
+          username: newPassword.username,
+          password: newPassword.password,
+        });
+        setModal(!modal);
+        setNewPassword({ title: "", username: "", password: "" });
         console.log(response);
       } catch (error) {
         const err = error.response.data;
