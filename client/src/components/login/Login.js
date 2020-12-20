@@ -33,7 +33,7 @@ const Login = () => {
     try {
       const { data } = await axios.post("/login", user);
       login(data.user);
-      console.log(data);
+      // console.log(data);
       history.push("/dash");
     } catch (error) {
       const err = error.response.data;

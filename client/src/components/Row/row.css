@@ -1,14 +1,18 @@
 .dashboardTable__row {
+  width: 100%;
   display: flex;
-  justify-content: space-evenly;
-  /* border: 1px solid #000; */
   padding: 9px 0;
   border-bottom: 1px solid lightgray;
+  justify-content: space-between;
 }
 
 .dashboardTable__row div {
-  margin: 0 50px;
-  /* border: 1px solid #000; */
+  width: 200px;
+  margin: 0 2rem 0 1rem;
+}
+
+.dashboardTable__row .passwordFieldBox {
+  display: flex;
 }
 
 .dashboardTable__row .passwordField {
@@ -34,3 +38,47 @@
 .dashboardTable__row .options .delete {
   color: red;
 }
+
+.options {
+  text-align: center;
+}
+/* 
+.dashboardTable__row {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  border: 1px solid #000;
+  text-align: left;
+  padding: 9px 0;
+  border-bottom: 1px solid lightgray;
+}
+
+
+.dashboardTable__row div {
+  border: 1px solid #000;
+  width: fit-content;
+}
+
+.dashboardTable__row .passwordField {
+  width: 180px;
+  border: none;
+  outline: none;
+}
+
+.dashboardTable__row .eyeBtn {
+  cursor: pointer;
+}
+
+.dashboardTable__row .options i {
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.dashboardTable__row .options .edit {
+  color: #22ac06;
+  padding-right: 1rem;
+}
+
+.dashboardTable__row .options .delete {
+  color: red;
+} */

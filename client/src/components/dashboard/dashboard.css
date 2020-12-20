@@ -127,7 +127,7 @@
 .dashboardTable__header {
   /* border: 1px solid #000; */
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   padding: 10px 0;
   background: #e6ffe0;
   border-bottom: 2px solid #22ac06;
@@ -135,9 +135,21 @@
 }
 
 .dashboardTable__header div {
-  margin: 0 90px;
+  margin: 0 70px 0 20px;
 }
 
 .dashboardTable__header div span {
   font-weight: bold;
+}
+
+.welcome {
+  height: calc(70vh - 150px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.welcome .msg span {
+  color: #22ac06;
+  font-weight: 600;
 }

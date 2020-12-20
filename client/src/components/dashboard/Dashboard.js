@@ -1,8 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Redirect } from "react-router-dom";
+import Avatar from "@material-ui/core/Avatar";
+import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./dashboard.css";
-import Avatar from "@material-ui/core/Avatar";
 
 import { UserContext } from "../../context/UserContext";
 import Row from "../Row/Row";
@@ -11,13 +12,29 @@ import Modal from "../Modal/Modal";
 const Dashboard = () => {
   const [modal, setModal] = useState(false);
   const { globalUser } = useContext(UserContext);
-  console.log("Context", globalUser);
+  const [passwordList, setPasswordList] = useState({
+    passwords: [],
+  });
 
   // Handle modal state
   const toggleModal = () => {
     setModal(!modal);
   };
 
+  useEffect(() => {
+    const getPasswordsList = async () => {
+      try {
+        const { data } = await axios.get("/sync-passwords");
+        setPasswordList({ passwords: data.user.passwords });
+      } catch (error) {
+        console.log(error.response);
+      }
+    };
+
+    getPasswordsList();
+  }, []);
+
+  console.log("List", passwordList);
   if (!globalUser.isAuthenticated) return <Redirect to="/" />;
   return (
     <div className="dashboard">
@@ -64,9 +81,18 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* Row Array */}
-          <Row />
-          <Row />
+          {passwordList.passwords.length > 0 ? (
+            passwordList.passwords.map((password) => (
+              <Row password={password} />
+            ))
+          ) : (
+            <div className="welcome">
+              <p className="msg">
+                Please click on <span>Add Password</span> button to save your
+                passwords here ..!!
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>

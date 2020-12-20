@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./row.css";
 
-const Row = () => {
+const Row = ({ password }) => {
   const [show, setShow] = useState(false);
   // Password Toggle
   const handlePasswordToggle = (e) => {
@@ -18,20 +18,19 @@ const Row = () => {
   const handleChange = () => {};
   return (
     <div className="dashboardTable__row">
-      <div>Amazon</div>
-      <div>makdoomShaikh</div>
-      <div>
+      <div>{password.title}</div>
+      <div>{password.username}</div>
+      <div className="passwordFieldBox">
         <input
           type="password"
           className="passwordField"
-          value="Darknight"
+          value={password.password}
           onChange={handleChange}
         />{" "}
         <i
           className={`eyeBtn far fa-eye${show ? "-slash" : ""}`}
           onClick={handlePasswordToggle}
         ></i>
-        {/* <i class="far fa-eye-slash"></i> */}
       </div>
       <div className="options">
         <i className="edit far fa-edit"></i>
