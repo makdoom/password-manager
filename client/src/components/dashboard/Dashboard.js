@@ -32,7 +32,7 @@ const Dashboard = () => {
           <div className="profile">
             <div className="profile__avatar">
               <Avatar className="avatar">
-                {globalUser.user.name.charAt(0)}
+                {globalUser.user.name.charAt(0).toUpperCase()}
               </Avatar>
             </div>
             <div className="profile__info">

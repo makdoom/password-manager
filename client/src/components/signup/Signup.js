@@ -31,10 +31,9 @@ const Signup = () => {
     setError({});
 
     try {
-      const response = await axios.post("/signup", user);
-      signup();
+      const { data } = await axios.post("/signup", user);
+      signup(data.user);
       history.push("/dash");
-      console.log(response);
     } catch (error) {
       const err = error.response.data;
       setError(err.errors);
@@ -52,6 +51,7 @@ const Signup = () => {
               name="name"
               className="name"
               type="text"
+              value={user.name}
               placeholder="Name"
               required
               onChange={handleChange}
@@ -63,6 +63,7 @@ const Signup = () => {
               name="email"
               className="email"
               type="text"
+              value={user.email}
               placeholder="Email"
               required
               onChange={handleChange}
@@ -74,6 +75,7 @@ const Signup = () => {
               className="password"
               name="password"
               type="password"
+              value={user.password}
               placeholder="password"
               required
               onChange={handleChange}

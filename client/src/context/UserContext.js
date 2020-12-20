@@ -20,15 +20,16 @@ const UserProvider = ({ children }) => {
   // Reducer
   const [state, dispatch] = useReducer(appReducer, initialState);
 
-  const login = (newUser) => {
+  const login = (user) => {
     dispatch({
       type: LOGIN_SUCCESS,
-      payload: newUser,
+      payload: user,
     });
   };
-  const signup = () => {
+  const signup = (newUser) => {
     dispatch({
       type: SIGNUP_SUCCESS,
+      payload: newUser,
     });
   };
 
