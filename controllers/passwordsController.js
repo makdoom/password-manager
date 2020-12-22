@@ -68,3 +68,46 @@ export const updatePassword = async (req, res) => {
     console.log(error);
   }
 };
+
+// Delete passwords
+export const deletePassword = async (req, res) => {
+  // take id from req obj
+  const userId = req.token.id;
+  const { id: msgId } = req.body;
+  console.log("deleting", msgId);
+  try {
+    // const user = await Password.findOneAndUpdate(
+    //   { userId },
+    //   { passwords: { $pull: { _id: msgId } } }
+    // );
+    // const user = await Password.findOneAndDelete({
+    //   passwords: {
+    //     $pop: { _id: msgId },
+    //   },
+    // });
+    // if (user) {
+    //   console.log(user);
+    // }
+    // await user.save;
+
+    const user = await Password.findOne({ userId });
+    if (user) {
+      const temp = user.passwords.filter((password) => password._id != msgId);
+      console.log(temp);
+      await temp.save();
+      // user.passwords.map((currentUser) => {
+      //   if (currentUser._id == id) {
+      //     currentUser.title = title;
+      //     currentUser.username = username;
+      //     currentUser.password = password;
+      //   }
+      // });
+    }
+
+    // const savedUser = await user.save();
+    // res.status(200).json({ updatedUser: savedUser });
+    // console.log(savedUser);
+  } catch (error) {
+    console.log(error);
+  }
+};

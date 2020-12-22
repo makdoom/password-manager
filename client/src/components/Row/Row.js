@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "./row.css";
 
 const Row = ({ password, edit }) => {
@@ -13,6 +14,18 @@ const Row = ({ password, edit }) => {
       passwordField.type = "password";
       setShow(false);
     }
+  };
+
+  const handleDelete = async () => {
+    const passwordId = password._id;
+    // console.log(passwordId);
+    const response = await axios.delete("/delete", {
+      data: { id: passwordId },
+    });
+    // try {
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
 
   const handleChange = () => {};
@@ -34,7 +47,7 @@ const Row = ({ password, edit }) => {
       </div>
       <div className="options">
         <i className="edit far fa-edit" onClick={() => edit(password)}></i>
-        <i className="delete far fa-trash-alt"></i>
+        <i className="delete far fa-trash-alt" onClick={handleDelete}></i>
       </div>
     </div>
   );

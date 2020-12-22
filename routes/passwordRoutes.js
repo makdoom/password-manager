@@ -3,6 +3,7 @@ import {
   addPassword,
   fetchPasswords,
   updatePassword,
+  deletePassword,
 } from "../controllers/passwordsController.js";
 import { passwordAuth } from "../middelware/passwordsAuth.js";
 
@@ -16,5 +17,8 @@ router.post("/add", passwordAuth, addPassword);
 
 // update password
 router.post("/update", passwordAuth, updatePassword);
+
+// delete password
+router.delete("/delete", passwordAuth, deletePassword);
 
 export default router;
