@@ -26,12 +26,8 @@ const Modal = ({ modal, setModal, update, setPasswordList, passwordList }) => {
     }
   }, [update]);
 
-  // Handle submit
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setPasswordList([...passwordList, newPassword]);
-    setModal(!modal);
-    setNewPassword({ title: "", username: "", password: "" });
+  // Save data to DB
+  const saveData = async () => {
     try {
       const response = await axios.post("/add", newPassword);
       console.log(response);
@@ -39,6 +35,15 @@ const Modal = ({ modal, setModal, update, setPasswordList, passwordList }) => {
       const err = error.response.data;
       console.log(err);
     }
+  };
+
+  // Handle submit
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setPasswordList([...passwordList, newPassword]);
+    saveData();
+    setModal(!modal);
+    setNewPassword({ title: "", username: "", password: "" });
   };
 
   // const handleSubmit = async (e) => {

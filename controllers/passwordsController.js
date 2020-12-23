@@ -2,27 +2,29 @@ import Password from "../models/PasswordModel.js";
 
 // Add password
 export const addPassword = async (req, res) => {
-  const { title, username, password } = req.body;
-  // take id from req obj
+  const password = req.body;
+  // User id from req
   const userId = req.token.id;
-  // Creating new obj
-  const newPaswordObj = {
-    $push: {
-      passwords: {
-        title,
-        username,
-        password,
-      },
-    },
-  };
 
-  // Query
-  const query = { userId };
-
+  // if user add password for the first time
   try {
-    const response = await Password.findOneAndUpdate(query, newPaswordObj, {
-      new: true,
-    });
+    const passwordList = await Password.findOne({ userId });
+    if (!passwordList) {
+      await Password.create({ userId, passwords: password });
+      res.status(201).send("Password added sucessfully");
+    }
+  } catch (error) {
+    res.status(401).json({ error });
+  }
+
+  // Adding the password in passwords array
+  try {
+    const newPasswordObj = { $push: { passwords: password } };
+    const response = await Password.findOneAndUpdate(
+      { userId },
+      newPasswordObj,
+      { new: true }
+    );
     res.status(200).json({ newPaswordObj: response });
   } catch (error) {
     res.status(401).json({ error });
@@ -36,9 +38,9 @@ export const fetchPasswords = async (req, res) => {
 
   try {
     const response = await Password.findOne({ userId });
-    res.status(200).json({ user: response });
+    res.status(200).json({ passwords: response.passwords });
   } catch (error) {
-    // res.status(401).json({ error });
+    res.status(401).json({ error });
     console.log(error);
   }
 };

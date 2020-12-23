@@ -56,7 +56,7 @@ export const signup = async (req, res) => {
       maxAge: maxAge * 1000,
     });
 
-    await Password.create({ userId: newUser._id });
+    // await Password.create({ userId: newUser._id });
     res.status(201).json({ user: newUser });
   } catch (error) {
     const errors = handelErrors(error);

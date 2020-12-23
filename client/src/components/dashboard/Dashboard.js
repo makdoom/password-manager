@@ -13,10 +13,7 @@ const Dashboard = () => {
   const [modal, setModal] = useState(false);
   const { globalUser } = useContext(UserContext);
   const [currentUser, setcurrentUser] = useState(null);
-  const [passwordList, setPasswordList] = useState([
-    { title: "Facebook", username: "makdoom", password: "makdoom" },
-    { title: "Amazon", username: "Mahek", password: "makdoom" },
-  ]);
+  const [passwordList, setPasswordList] = useState([]);
 
   // Handle update
   const handleEdit = (updateUser) => {
@@ -29,18 +26,19 @@ const Dashboard = () => {
   };
   // console.log(currentUser);
 
-  // useEffect(() => {
-  //   const getPasswordsList = async () => {
-  //     try {
-  //       const { data } = await axios.get("/sync-passwords");
-  //       setPasswordList({ passwords: data.user.passwords });
-  //     } catch (error) {
-  //       console.log(error.response);
-  //     }
-  //   };
+  useEffect(() => {
+    const getPasswordsList = async () => {
+      try {
+        const { data } = await axios.get("/sync-passwords");
+        setPasswordList(data.passwords);
+        // console.log(data.passwords);
+      } catch (error) {
+        console.log(error.response);
+      }
+    };
 
-  //   getPasswordsList();
-  // }, []);
+    getPasswordsList();
+  }, []);
 
   if (!globalUser.isAuthenticated) return <Redirect to="/" />;
   return (
