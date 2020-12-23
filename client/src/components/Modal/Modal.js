@@ -4,7 +4,7 @@ import axios from "axios";
 
 import { UserContext } from "../../context/UserContext";
 
-const Modal = ({ modal, setModal, update }) => {
+const Modal = ({ modal, setModal, update, setPasswordList, passwordList }) => {
   const { globalUser } = useContext(UserContext);
   const [newPassword, setNewPassword] = useState({
     title: "",
@@ -25,43 +25,57 @@ const Modal = ({ modal, setModal, update }) => {
       });
     }
   }, [update]);
+
   // Handle submit
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!update) {
-      try {
-        const response = await axios.post("/add", newPassword);
-        setModal(!modal);
-        setNewPassword({ title: "", username: "", password: "" });
-        console.log(response);
-      } catch (error) {
-        const err = error.response.data;
-        console.log(err);
-      }
-    } else {
-      try {
-        const response = await axios.post("/update", {
-          id: update._id,
-          title: newPassword.title,
-          username: newPassword.username,
-          password: newPassword.password,
-        });
-        setModal(!modal);
-        setNewPassword({ title: "", username: "", password: "" });
-        console.log(response);
-      } catch (error) {
-        const err = error.response.data;
-        console.log(err);
-      }
+    setPasswordList([...passwordList, newPassword]);
+    setModal(!modal);
+    setNewPassword({ title: "", username: "", password: "" });
+    try {
+      const response = await axios.post("/add", newPassword);
+      console.log(response);
+    } catch (error) {
+      const err = error.response.data;
+      console.log(err);
     }
   };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if (!update) {
+  //     try {
+  //       const response = await axios.post("/add", newPassword);
+  //       setModal(!modal);
+  //       setNewPassword({ title: "", username: "", password: "" });
+  //       console.log(response);
+  //     } catch (error) {
+  //       const err = error.response.data;
+  //       console.log(err);
+  //     }
+  //   } else {
+  //     try {
+  //       const response = await axios.post("/update", {
+  //         id: update._id,
+  //         title: newPassword.title,
+  //         username: newPassword.username,
+  //         password: newPassword.password,
+  //       });
+  //       setModal(!modal);
+  //       setNewPassword({ title: "", username: "", password: "" });
+  //       console.log(response);
+  //     } catch (error) {
+  //       const err = error.response.data;
+  //       console.log(err);
+  //     }
+  //   }
+  // };
 
   const closeModal = () => {
     setModal(!modal);
     setNewPassword({ title: "", username: "", password: "" });
   };
 
-  console.log(newPassword, update);
   return (
     <div className="modal__container">
       <div className="modal__header">

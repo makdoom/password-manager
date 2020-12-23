@@ -5,6 +5,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
+    "npm-install": "npm install",
     "start": "node server.js",
     "server": "nodemon server.js",
     "client-install": "cd client && npm install",

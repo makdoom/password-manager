@@ -12,11 +12,11 @@ import Modal from "../Modal/Modal";
 const Dashboard = () => {
   const [modal, setModal] = useState(false);
   const { globalUser } = useContext(UserContext);
-  // console.log(globalUser);
   const [currentUser, setcurrentUser] = useState(null);
-  const [passwordList, setPasswordList] = useState({
-    passwords: [],
-  });
+  const [passwordList, setPasswordList] = useState([
+    { title: "Facebook", username: "makdoom", password: "makdoom" },
+    { title: "Amazon", username: "Mahek", password: "makdoom" },
+  ]);
 
   // Handle update
   const handleEdit = (updateUser) => {
@@ -29,24 +29,30 @@ const Dashboard = () => {
   };
   // console.log(currentUser);
 
-  useEffect(() => {
-    const getPasswordsList = async () => {
-      try {
-        const { data } = await axios.get("/sync-passwords");
-        setPasswordList({ passwords: data.user.passwords });
-      } catch (error) {
-        console.log(error.response);
-      }
-    };
+  // useEffect(() => {
+  //   const getPasswordsList = async () => {
+  //     try {
+  //       const { data } = await axios.get("/sync-passwords");
+  //       setPasswordList({ passwords: data.user.passwords });
+  //     } catch (error) {
+  //       console.log(error.response);
+  //     }
+  //   };
 
-    getPasswordsList();
-  }, []);
+  //   getPasswordsList();
+  // }, []);
 
   if (!globalUser.isAuthenticated) return <Redirect to="/" />;
   return (
     <div className="dashboard">
       <div className={`modal__background modalShowing-${modal}`}>
-        <Modal modal={modal} setModal={setModal} update={currentUser} />
+        <Modal
+          modal={modal}
+          setModal={setModal}
+          update={currentUser}
+          passwordList={passwordList}
+          setPasswordList={setPasswordList}
+        />
       </div>
       <h2 className="heading">
         Password <span>Manager</span>
@@ -88,8 +94,8 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {passwordList.passwords.length > 0 ? (
-            passwordList.passwords.map((password) => (
+          {passwordList.length > 0 ? (
+            passwordList.map((password) => (
               <Row password={password} key={password._id} edit={handleEdit} />
             ))
           ) : (
