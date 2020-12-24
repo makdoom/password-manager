@@ -22,10 +22,6 @@ const Row = ({ password, edit }) => {
     const response = await axios.delete("/delete", {
       data: { id: passwordId },
     });
-    // try {
-    // } catch (error) {
-    //   console.log(error);
-    // }
   };
 
   const handleChange = () => {};

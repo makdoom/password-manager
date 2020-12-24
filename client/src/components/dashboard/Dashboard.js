@@ -17,6 +17,7 @@ const Dashboard = () => {
 
   // Handle update
   const handleEdit = (updateUser) => {
+    console.log(updateUser);
     setcurrentUser(updateUser);
     setModal(!modal);
   };
@@ -48,6 +49,7 @@ const Dashboard = () => {
           modal={modal}
           setModal={setModal}
           update={currentUser}
+          setUpdate={setcurrentUser}
           passwordList={passwordList}
           setPasswordList={setPasswordList}
         />

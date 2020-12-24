@@ -127,7 +127,7 @@
 .dashboardTable__header {
   /* border: 1px solid #000; */
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   padding: 10px 0;
   background: #e6ffe0;
   border-bottom: 2px solid #22ac06;
@@ -140,6 +140,10 @@
 
 .dashboardTable__header div span {
   font-weight: bold;
+}
+
+.dashboardTable__header .options {
+  margin-left: 2rem;
 }
 
 .welcome {

@@ -1,11 +1,15 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./modal.css";
 import axios from "axios";
 
-import { UserContext } from "../../context/UserContext";
-
-const Modal = ({ modal, setModal, update, setPasswordList, passwordList }) => {
-  const { globalUser } = useContext(UserContext);
+const Modal = ({
+  modal,
+  setModal,
+  update,
+  setPasswordList,
+  passwordList,
+  setUpdate,
+}) => {
   const [newPassword, setNewPassword] = useState({
     title: "",
     username: "",
@@ -40,45 +44,44 @@ const Modal = ({ modal, setModal, update, setPasswordList, passwordList }) => {
   // Handle submit
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setPasswordList([...passwordList, newPassword]);
-    saveData();
-    setModal(!modal);
-    setNewPassword({ title: "", username: "", password: "" });
+    if (!update) {
+      console.log("updating");
+      setPasswordList([...passwordList, newPassword]);
+      saveData();
+      console.log("passowrd saved");
+      setModal(!modal);
+      setNewPassword({ title: "", username: "", password: "" });
+    } else {
+      // updating local object
+      passwordList.forEach((oldPassword) => {
+        if (oldPassword._id === update._id) {
+          oldPassword.title = newPassword.title;
+          oldPassword.username = newPassword.username;
+          oldPassword.password = newPassword.password;
+        }
+      });
+      try {
+        const response = await axios.post("/update", {
+          id: update._id,
+          title: newPassword.title,
+          username: newPassword.username,
+          password: newPassword.password,
+        });
+        console.log(response);
+        setModal(!modal);
+        setNewPassword({ title: "", username: "", password: "" });
+      } catch (error) {
+        const err = error.response.data;
+        console.log(err);
+      }
+    }
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   if (!update) {
-  //     try {
-  //       const response = await axios.post("/add", newPassword);
-  //       setModal(!modal);
-  //       setNewPassword({ title: "", username: "", password: "" });
-  //       console.log(response);
-  //     } catch (error) {
-  //       const err = error.response.data;
-  //       console.log(err);
-  //     }
-  //   } else {
-  //     try {
-  //       const response = await axios.post("/update", {
-  //         id: update._id,
-  //         title: newPassword.title,
-  //         username: newPassword.username,
-  //         password: newPassword.password,
-  //       });
-  //       setModal(!modal);
-  //       setNewPassword({ title: "", username: "", password: "" });
-  //       console.log(response);
-  //     } catch (error) {
-  //       const err = error.response.data;
-  //       console.log(err);
-  //     }
-  //   }
-  // };
-
+  // Close modal
   const closeModal = () => {
     setModal(!modal);
     setNewPassword({ title: "", username: "", password: "" });
+    setUpdate("");
   };
 
   return (
