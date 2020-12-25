@@ -33,11 +33,11 @@ mongoose.connect(
 );
 
 // Routes
-app.get("/", (req, res) => res.send("Welcome to PWD"));
 app.use(passwordRoutes);
 app.use(authRoutes);
 
 // Deployment config
+const __dirname = path.resolve(path.dirname(""));
 if (process.env.NODE_ENV === "production") {
   // set static folder
   app.use(express.static("client/build"));
