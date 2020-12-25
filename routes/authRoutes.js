@@ -1,16 +1,19 @@
 import express from "express";
 
-import { signup, login } from "../controllers/authController.js";
+import { signup, login, logout } from "../controllers/authController.js";
 import { requireAuth } from "../middelware/authMiddelware.js";
 const router = express.Router();
 
-// GET
-router.get("/", (req, res) => {
-  res.send("Welcome");
-});
-
+// Sinup request
 router.post("/signup", signup);
+
+// Login request
 router.post("/login", login);
+
+// Dashboard request
 router.get("/dash", requireAuth);
+
+// Logout request
+router.get("/logout", logout);
 
 export default router;

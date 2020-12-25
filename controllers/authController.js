@@ -84,3 +84,9 @@ export const login = async (req, res) => {
     res.status(401).json({ errors });
   }
 };
+
+// Logout
+export const logout = (req, res) => {
+  res.cookie("jwt", "", { maxAge: 1 });
+  res.status(200).send("logout");
+};

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./row.css";
 
-const Row = ({ password, edit }) => {
+const Row = ({ password, edit, passwordList, setPasswordList }) => {
   const [show, setShow] = useState(false);
   // Password Toggle
   const handlePasswordToggle = (e) => {
@@ -19,9 +19,14 @@ const Row = ({ password, edit }) => {
   const handleDelete = async () => {
     const passwordId = password._id;
     // console.log(passwordId);
+    const updatedPasswordList = passwordList.filter(
+      (password) => password._id !== passwordId
+    );
+    setPasswordList(updatedPasswordList);
     const response = await axios.delete("/delete", {
-      data: { id: passwordId },
+      data: { _id: passwordId },
     });
+    console.log(response);
   };
 
   const handleChange = () => {};

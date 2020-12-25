@@ -100,17 +100,19 @@ const Modal = ({
             name="title"
             className="modal__input"
             type="text"
-            placeholder="Title"
+            placeholder="eg. Facebook, Instagram etc"
             value={newPassword.title}
             onChange={handleChange}
+            required
           />
           <input
             name="username"
             className="modal__input"
             type="text"
             value={newPassword.username}
-            placeholder="Username"
+            placeholder="Username / Email"
             onChange={handleChange}
+            required
           />
           <input
             name="password"
@@ -119,6 +121,7 @@ const Modal = ({
             value={newPassword.password}
             placeholder="Password"
             onChange={handleChange}
+            required
           />
           <button className="add__password" type="submit">
             {update ? "Update Password" : "Add Password"}

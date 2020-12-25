@@ -52,7 +52,7 @@
 
 .add__password {
   border: none;
-  outline: none;
+  outline: none !important;
   margin-top: 1rem;
   padding: 8px;
   background: #27ca06;

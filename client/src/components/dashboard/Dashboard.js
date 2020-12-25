@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -10,6 +10,7 @@ import Row from "../Row/Row";
 import Modal from "../Modal/Modal";
 
 const Dashboard = () => {
+  const history = useHistory();
   const [modal, setModal] = useState(false);
   const { globalUser } = useContext(UserContext);
   const [currentUser, setcurrentUser] = useState(null);
@@ -21,12 +22,24 @@ const Dashboard = () => {
     setcurrentUser(updateUser);
     setModal(!modal);
   };
+
   // Handle modal state
   const toggleModal = () => {
     setModal(!modal);
   };
-  // console.log(currentUser);
 
+  // Handle logout
+  const handleLogout = async () => {
+    try {
+      await axios.get("/logout");
+      history.push("/");
+      console.log("logout");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // Get all the passwords
   useEffect(() => {
     const getPasswordsList = async () => {
       try {
@@ -72,7 +85,7 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="logout">
-            <button onClick={handleEdit}>
+            <button onClick={handleLogout}>
               Logout <i className="fas fa-sign-out-alt"></i>
             </button>
           </div>
@@ -96,7 +109,13 @@ const Dashboard = () => {
 
           {passwordList.length > 0 ? (
             passwordList.map((password) => (
-              <Row password={password} key={password._id} edit={handleEdit} />
+              <Row
+                password={password}
+                key={password._id}
+                edit={handleEdit}
+                passwordList={passwordList}
+                setPasswordList={setPasswordList}
+              />
             ))
           ) : (
             <div className="welcome">
