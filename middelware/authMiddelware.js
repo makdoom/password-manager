@@ -11,7 +11,6 @@ export const requireAuth = (req, res, next) => {
         res.json({ auth: false });
       } else {
         req.token = decodedToken;
-        res.status(200).json({ auth: true, token: decodedToken });
         next();
       }
     });
