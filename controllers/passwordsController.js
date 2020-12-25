@@ -10,8 +10,8 @@ export const addPassword = async (req, res) => {
   try {
     const passwordList = await Password.findOne({ userId });
     if (!passwordList) {
-      await Password.create({ userId, passwords: password });
-      res.status(201).send("Password added sucessfully");
+      const response = await Password.create({ userId, passwords: password });
+      res.status(200).json({ newPasswordObj: response });
     } else {
       // Adding the password in passwords array
       try {
@@ -21,7 +21,7 @@ export const addPassword = async (req, res) => {
           newPasswordObj,
           { new: true }
         );
-        res.status(200).json({ newPaswordObj: response });
+        res.status(200).json({ newPasswordObj: response });
       } catch (error) {
         res.status(401).json({ error });
       }

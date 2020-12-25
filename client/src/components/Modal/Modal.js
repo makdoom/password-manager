@@ -33,7 +33,32 @@ const Modal = ({
   // Save data to DB
   const saveData = async () => {
     try {
-      const response = await axios.post("/add", newPassword);
+      const { data } = await axios.post("/add", newPassword);
+      console.log(data);
+      setPasswordList(data.newPasswordObj.passwords);
+    } catch (error) {
+      const err = error.response.data;
+      console.log(err);
+    }
+  };
+
+  // Update data
+  const updateData = async () => {
+    // updating local object
+    passwordList.forEach((oldPassword) => {
+      if (oldPassword._id === update._id) {
+        oldPassword.title = newPassword.title;
+        oldPassword.username = newPassword.username;
+        oldPassword.password = newPassword.password;
+      }
+    });
+    try {
+      const response = await axios.post("/update", {
+        id: update._id,
+        title: newPassword.title,
+        username: newPassword.username,
+        password: newPassword.password,
+      });
       console.log(response);
     } catch (error) {
       const err = error.response.data;
@@ -45,35 +70,14 @@ const Modal = ({
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!update) {
-      console.log("updating");
-      setPasswordList([...passwordList, newPassword]);
       saveData();
-      console.log("passowrd saved");
       setModal(!modal);
       setNewPassword({ title: "", username: "", password: "" });
     } else {
-      // updating local object
-      passwordList.forEach((oldPassword) => {
-        if (oldPassword._id === update._id) {
-          oldPassword.title = newPassword.title;
-          oldPassword.username = newPassword.username;
-          oldPassword.password = newPassword.password;
-        }
-      });
-      try {
-        const response = await axios.post("/update", {
-          id: update._id,
-          title: newPassword.title,
-          username: newPassword.username,
-          password: newPassword.password,
-        });
-        console.log(response);
-        setModal(!modal);
-        setNewPassword({ title: "", username: "", password: "" });
-      } catch (error) {
-        const err = error.response.data;
-        console.log(err);
-      }
+      updateData();
+      setModal(!modal);
+      setNewPassword({ title: "", username: "", password: "" });
+      setUpdate("");
     }
   };
 
@@ -117,7 +121,7 @@ const Modal = ({
             onChange={handleChange}
           />
           <button className="add__password" type="submit">
-            Add Password
+            {update ? "Update Password" : "Add Password"}
           </button>
         </form>
       </div>
