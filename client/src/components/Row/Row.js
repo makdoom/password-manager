@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import Tippy from "@tippyjs/react";
 import axios from "axios";
+import "tippy.js/dist/tippy.css";
 import "./row.css";
 
 const Row = ({ password, edit, passwordList, setPasswordList }) => {
@@ -38,15 +40,20 @@ const Row = ({ password, edit, passwordList, setPasswordList }) => {
           className="passwordField"
           value={password.password}
           onChange={handleChange}
-        />{" "}
+        />
+        {""}
         <i
           className={`eyeBtn far fa-eye${show ? "-slash" : ""}`}
           onClick={handlePasswordToggle}
         ></i>
       </div>
       <div className="options">
-        <i className="edit far fa-edit" onClick={() => edit(password)}></i>
-        <i className="delete far fa-trash-alt" onClick={handleDelete}></i>
+        <Tippy content="Edit">
+          <i className="edit far fa-edit" onClick={() => edit(password)}></i>
+        </Tippy>
+        <Tippy content="Delete">
+          <i className="delete far fa-trash-alt" onClick={handleDelete}></i>
+        </Tippy>
       </div>
     </div>
   );

@@ -8,9 +8,10 @@
     "npm-install": "npm install",
     "start": "node server.js",
     "server": "nodemon server.js",
-    "client-install": "cd client && npm install",
-    "client": "cd client && npm start",
-    "dev": "concurrently \" npm run server \" \"npm run client\""
+    "client-install": "npm install --prefix client",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \" npm run server \" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run buld --prefix client"
   },
   "author": "Makdoom Shaikh",
   "license": "ISC",
