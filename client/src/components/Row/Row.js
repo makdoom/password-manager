@@ -18,15 +18,13 @@ const Row = ({ password, edit, passwordList, setPasswordList }) => {
 
   const handleDelete = async () => {
     const passwordId = password._id;
-    // console.log(passwordId);
     const updatedPasswordList = passwordList.filter(
       (password) => password._id !== passwordId
     );
     setPasswordList(updatedPasswordList);
-    const response = await axios.delete("/delete", {
+    await axios.delete("/delete", {
       data: { _id: passwordId },
     });
-    console.log(response);
   };
 
   const handleChange = () => {};

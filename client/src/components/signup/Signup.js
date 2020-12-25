@@ -37,7 +37,6 @@ const Signup = () => {
     } catch (error) {
       const err = error.response.data;
       setError(err.errors);
-      console.log(err);
     }
   };
 
@@ -76,7 +75,7 @@ const Signup = () => {
               name="password"
               type="password"
               value={user.password}
-              placeholder="password"
+              placeholder="Password"
               required
               onChange={handleChange}
             />

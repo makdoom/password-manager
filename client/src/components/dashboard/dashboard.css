@@ -1,8 +1,7 @@
 .dashboard {
   position: relative;
   height: 100vh;
-  background: #e6ffe0;
-  /* padding: 20px; */
+  background: #fbcbc9;
 }
 
 .modal__background {
@@ -30,11 +29,11 @@
 }
 
 .dashboard .heading span {
-  color: #22ac06;
+  color: #be1558;
 }
 
 .dashboard__container {
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
   height: 85vh;
   background: #fff;
   padding: 20px;
@@ -55,12 +54,13 @@
 }
 
 .profile__avatar .avatar {
-  background: #e6ffe0;
+  background: #f8e2e1;
   width: 100px;
   height: 100px;
   font-size: 3rem;
-  color: #22ac06;
-  border: 1px solid #22ac06;
+  color: #be1558;
+  font-weight: 600;
+  border: 1px solid #be1558;
 }
 
 .profile__info {
@@ -74,7 +74,7 @@
 }
 
 .profile__info p {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: grey;
 }
 
@@ -86,14 +86,14 @@
   padding: 8px 30px;
   font-size: 0.9rem;
   font-weight: 600;
-  border: 2px solid #27ca06;
+  border: 2px solid #be1558;
   background: #fff;
-  color: #27ca06;
+  color: #be1558;
   transition: all 0.3s ease-in-out;
 }
 
 .profile__info button:hover {
-  background: #27ca06;
+  background: #be1558;
   color: #fff;
 }
 
@@ -104,13 +104,13 @@
   padding: 8px 20px;
   font-size: 0.95rem;
   font-weight: 600;
-  background: #27ca06;
+  background: #be1558;
   color: #fff;
   transition: all 0.3s ease-in-out;
 }
 
 .logout button:hover {
-  background: #1d9705;
+  background: #322514;
 }
 .logout button i {
   font-size: 1rem;
@@ -118,19 +118,16 @@
 }
 
 .dashboard__body {
-  /* border: 1px solid #000; */
   margin-top: 2rem;
   height: calc(80vh - 150px);
   overflow: auto;
 }
 
 .dashboardTable__header {
-  /* border: 1px solid #000; */
   display: flex;
   justify-content: space-between;
   padding: 10px 0;
-  background: #e6ffe0;
-  border-bottom: 2px solid #22ac06;
+  background: #fbcbc9;
   margin-bottom: 0.8rem;
 }
 
@@ -151,9 +148,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 1.2rem;
 }
 
 .welcome .msg span {
-  color: #22ac06;
-  font-weight: 600;
+  color: #be1558;
+  font-weight: bold;
 }

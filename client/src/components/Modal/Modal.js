@@ -34,7 +34,6 @@ const Modal = ({
   const saveData = async () => {
     try {
       const { data } = await axios.post("/add", newPassword);
-      console.log(data);
       setPasswordList(data.newPasswordObj.passwords);
     } catch (error) {
       const err = error.response.data;
@@ -53,13 +52,12 @@ const Modal = ({
       }
     });
     try {
-      const response = await axios.post("/update", {
+      await axios.post("/update", {
         id: update._id,
         title: newPassword.title,
         username: newPassword.username,
         password: newPassword.password,
       });
-      console.log(response);
     } catch (error) {
       const err = error.response.data;
       console.log(err);

@@ -9,7 +9,6 @@ import { UserContext } from "../../context/UserContext";
 const Login = () => {
   const history = useHistory();
   const { login } = useContext(UserContext);
-  // console.log("Context", user);
 
   // Local user obj
   const [user, setUser] = useState({
@@ -33,21 +32,17 @@ const Login = () => {
     try {
       const { data } = await axios.post("/login", user);
       login(data.user);
-      // console.log(data);
       history.push("/dash");
     } catch (error) {
       const err = error.response.data;
       setError(err.errors);
-      console.log(err);
     }
   };
 
   return (
     <div className="login">
       <div className="login__box">
-        <h2>
-          Login <span className="material-icons">person_add</span>
-        </h2>
+        <h2>Login</h2>
         <form className="login__form" onSubmit={handleSubmit}>
           <div className="emailBox">
             <input
@@ -63,7 +58,7 @@ const Login = () => {
             <input
               type="password"
               className="password"
-              placeholder="password"
+              placeholder="Password"
               name="password"
               onChange={handleChange}
             />

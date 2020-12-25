@@ -14,21 +14,25 @@
 .modal__header {
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  padding: 20px 30px;
 }
 
 .modal__header h3 {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 600;
 }
 
 .modal__header i {
   font-size: 1.3rem;
   cursor: pointer;
+  color: #be1558;
 }
 
+.modal__header i:hover {
+  color: #322514;
+}
 .form__control {
-  padding: 10px 15px 15px 15px;
+  padding: 10px 20px 15px 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -39,15 +43,18 @@
 .form__control .modal__input,
 .add__password {
   width: 250px;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.8rem;
 }
 
 .form__control .modal__input {
   padding: 7px 10px;
   border: 1px solid lightgray;
   outline: none;
-  border-bottom: 2px solid lightgray;
   font-size: 0.9rem;
+}
+
+.form__control .modal__input:focus {
+  border-color: #be1558;
 }
 
 .add__password {
@@ -55,8 +62,13 @@
   outline: none !important;
   margin-top: 1rem;
   padding: 8px;
-  background: #27ca06;
+  background: #be1558;
   color: #fff;
   font-size: 0.95rem;
   font-weight: 600;
+  transition: all 0.3s ease-in-out;
+}
+
+.add__password:hover {
+  background: #322514 !important;
 }

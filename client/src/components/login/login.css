@@ -4,7 +4,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #e6ffe0;
+  /* background: #e6ffe0; */
+  background: #fbcbc9;
 }
 .login__box {
   padding: 30px;
@@ -19,7 +20,7 @@
   font-size: 2rem;
   margin-bottom: 1.2rem;
   font-weight: 700;
-  color: #22ac06;
+  color: #be1558;
 }
 
 .login__box h2 span {
@@ -48,13 +49,12 @@
   font-family: "Inter";
   outline: none;
   border: 1px solid lightgray;
-  border-bottom: 2px solid lightgray;
-  transition: all 0.3s ease-in-out;
+  transition: border 0.3s ease-in-out;
 }
 
 .login__box .login__form .email:focus,
 .password:focus {
-  border-color: #25e000;
+  border-color: #be1558;
 }
 
 .login__box .login__form .login__btn {
@@ -62,7 +62,7 @@
   font-size: 1rem;
   border: none;
   outline: none;
-  background: linear-gradient(to left, #1fb800, #25e000);
+  background-color: #be1558;
   color: #fff;
   font-weight: 600;
   padding: 10px 15px;
@@ -77,6 +77,7 @@
 
 .login__box p a {
   text-decoration: none;
-  color: #22ac06;
+  color: #be1558;
+  font-weight: 600;
   font-weight: 600px;
 }

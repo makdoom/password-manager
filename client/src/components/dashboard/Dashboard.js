@@ -18,7 +18,6 @@ const Dashboard = () => {
 
   // Handle update
   const handleEdit = (updateUser) => {
-    console.log(updateUser);
     setcurrentUser(updateUser);
     setModal(!modal);
   };
@@ -33,7 +32,6 @@ const Dashboard = () => {
     try {
       await axios.get("/logout");
       history.push("/");
-      console.log("logout");
     } catch (error) {
       console.log(error);
     }
@@ -45,7 +43,6 @@ const Dashboard = () => {
       try {
         const { data } = await axios.get("/sync-passwords");
         setPasswordList(data.passwords);
-        // console.log(data.passwords);
       } catch (error) {
         console.log(error.response);
       }
