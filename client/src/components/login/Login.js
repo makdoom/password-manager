@@ -32,7 +32,7 @@ const Login = () => {
     try {
       const { data } = await axios.post("/login", user);
       login(data.user);
-      history.push("/dash");
+      history.push("/dashboard");
     } catch (error) {
       const err = error.response.data;
       setError(err.errors);
