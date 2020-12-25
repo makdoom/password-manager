@@ -39,7 +39,9 @@ export const fetchPasswords = async (req, res) => {
 
   try {
     const response = await Password.findOne({ userId });
-    res.status(200).json({ passwords: response.passwords });
+    if (response)
+      return res.status(200).json({ passwords: response.passwords });
+    res.status(200).json({ password: response });
   } catch (error) {
     res.status(401).json({ error });
     console.log(error);
