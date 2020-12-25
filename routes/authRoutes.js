@@ -9,6 +9,8 @@ router.post("/signup", signup);
 // Login request
 router.post("/login", login);
 
+router.get("/dashboard", (req, res) => res.status(200));
+
 // Logout request
 router.get("/logout", logout);
 
