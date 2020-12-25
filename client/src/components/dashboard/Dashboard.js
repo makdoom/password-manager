@@ -104,7 +104,7 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {passwordList.length > 0 ? (
+          {passwordList ? (
             passwordList.map((password) => (
               <Row
                 password={password}
