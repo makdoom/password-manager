@@ -4,7 +4,6 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import path from "path";
 
 import authRoutes from "./routes/authRoutes.js";
 import passwordRoutes from "./routes/passwordRoutes.js";
@@ -31,22 +30,21 @@ mongoose.connect(
   },
   () => console.log("DB connected")
 );
+const port = process.env.PORT || 5000;
 
 // Routes
 app.use(passwordRoutes);
 app.use(authRoutes);
 
-// Deployment config
-const __dirname = path.resolve(path.dirname(""));
+// // Deployment config
 if (process.env.NODE_ENV === "production") {
   // set static folder
   app.use(express.static("client/build"));
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
+  // app.get("*", (req, res) => {
+  //   res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  // });
 }
 
 // PORT
-const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server running at ${port}`));
